@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:event listener="#{clienteMB.listarClientes}" type="preRenderView" />
+
+	</f:metadata>
+</ui:define>
+
+<head>
+<h:outputStylesheet library="style" name="estilo.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Listar Clientes</title>
+<link href="style/css/materialize.min.css" rel="stylesheet"
+	type="text/css" />
+</head>
+
+
+<body>
+	<nav>
+	<div class="nav-wrapper #03a9f4 light-blue">
+		<a href="#!" class="brand-logo">AutoTEC</a>
+
+	</div>
+	</nav>
+	<center>
+		<h3>Listar Clientes</h3>
+	</center>
+
+
+	<h:form id="consultarCliente">
+
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Clientes: " />
+			<p:inputText maxlength="50" size="50" />
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+	<h:form>
+		<p:dataTable emptyMessage="Nenhum registro encontrado"
+			value="#{clienteMB.clientes}" var="cli">
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{cli.nomeCliente}" />
+			</p:column>
+
+			<p:column headerText="CPF/CNPJ">
+				<h:outputText value="#{cli.cpfCnpjCliente}" />
+			</p:column>
+
+<!-- 			<p:column headerText="Rua"> -->
+<!-- 				<h:outputText value="#{cli.enderecoMB.ruaEndereco}" /> -->
+<!-- 			</p:column> -->
+
+<!-- 			<p:column headerText="Número"> -->
+<!-- 				<h:outputText value="#{cli.enderecoMB.numeroEndereco}" /> -->
+<!-- 			</p:column> -->
+
+<!-- 			<p:column headerText="Cidade"> -->
+<!-- 				<h:outputText value="#{cli.enderecoMB.cidadeEndereco}" /> -->
+<!-- 			</p:column> -->
+
+<!-- 			<p:column headerText="Estado"> -->
+<!-- 				<h:outputText value="#{cli.enderecoMB.estadoEndereco}" /> -->
+<!-- 			</p:column> -->
+
+			<p:column headerText="Celular">
+				<h:outputText value="#{cli.celularCliente}" />
+			</p:column>
+			
+			<p:column headerText="E-mail">
+				<h:outputText value="#{cli.emailCliente}" />
+			</p:column>
+
+			<p:column headerText="Opções">
+				<p:button value="Editar" outcome="/cadastrarCliente.xhtml">
+					<f:param name="clienteCod" value="#{cli.codigo}" />
+					<f:param name="clienteAcao" value="Editar" />
+
+				</p:button>
+				<p:button value="Excluir" outcome="/cadastrarCliente.xhtml">
+					<f:param name="clienteCod" value="#{cli.codigo}" />
+					<f:param name="clienteAcao" value="Excluir" />
+
+				</p:button>
+			</p:column>
+
+			<f:facet name="footer">
+				<p:button value="Voltar" outcome="/cadastrarCliente.xhtml">
+					<f:param name="clienteAcao" value="Voltar" />
+				</p:button>
+			</f:facet>
+
+		</p:dataTable>
+	</h:form>
+
+	<br />
+	<br />
+	<br />
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="style/css/materialize.min.js"></script>
+</body>
+</html>

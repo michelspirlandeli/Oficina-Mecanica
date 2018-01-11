@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:event listener="#{mecanicoMB.listarMecanicos}"
+			type="preRenderView" />
+	</f:metadata>
+</ui:define>
+<head>
+<h:outputStylesheet library="style" name="estilo.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Listar Mecanicos</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+</head>
+<body>
+<ui:include src="includes/header.xhtml" />
+<center>
+		<h3>Listar Mecanicos</h3>
+	</center>
+	<h:form>
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Mecanico" />
+			<p:inputText maxlength="50" size="30" />
+		</h:panelGrid>
+		<p:dataTable emptyMessage="Nenhum registro encontrado"
+			value="#{mecanicoMB.mecanicos}" var="ate">
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{mec.nomeMecanico}" />
+			</p:column>
+			
+			<p:column headerText="Especialidade">
+				<h:outputText value="#{mec.especialidadeMecanico}" />
+			</p:column>
+
+			<p:column headerText="Celular">
+				<h:outputText value="#{mec.celularMecanico}" />
+			</p:column>
+
+			<p:column headerText="Telefone">
+				<h:outputText value="#{mec.telefoneMecanico}" />
+			</p:column>
+
+			<p:column headerText="Data Cadastro">
+				<h:outputText value="#{mec.dataCadastroMecanico}" />
+			</p:column>
+
+			<p:column headerText="Opções">
+				<p:button value="Editar" outcome="/cadastrarMecanico.xhtml">
+					<f:param name="mecanicoCod" value="#{mec.codigo}" />
+					<f:param name="mecAcao" value="Editar" />
+
+				</p:button>
+				<p:button value="Excluir" outcome="/cadastrarMecanico.xhtml">
+					<f:param name="mecanicoCod" value="#{mec.codigo}" />
+					<f:param name="mecAcao" value="Excluir" />
+
+				</p:button>
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:button value="Voltar" outcome="/cadastrarMecanico.xhtml">
+					<f:param name="mecAcao" value="Voltar" />
+				</p:button>
+			</f:facet>
+			
+		</p:dataTable>
+	</h:form>
+
+	<br />
+	<br />
+	<br />
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+		<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>
+</body>
+</html>

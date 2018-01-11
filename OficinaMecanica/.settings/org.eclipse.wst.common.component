@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="tcc_oficina_mecanica">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
+        <property name="context-root" value="tcc_oficina_mecanica"/>
+        <property name="java-output-path" value="/tcc_oficina_mecanica/build/classes"/>
+    </wb-module>
+</project-modules>

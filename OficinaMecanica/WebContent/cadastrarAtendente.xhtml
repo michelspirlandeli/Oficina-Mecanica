@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="atendAcao" value="#{atendenteMB.acao}" />
+		<f:viewParam name="atendenteCod" value="#{atendenteMB.codigo}" />
+		<f:event listener="#{atendenteMB.getByIdAtendente}"
+			type="preRenderView" />
+	</f:metadata>
+</ui:define>
+<h:head>
+	<title>Cadastrar Atendente</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+</h:head>
+<h:body>
+	<ui:include src="includes/navbar.xhtml" />
+	<br />
+	<!-- cabecalho-->
+
+	<p:growl id="msgProjeto" sticky="true" />
+	<h:form id="frmAtendente">
+		<h:panelGroup id="pnlAtendente">
+			<div class="form-horizontal">
+				<div class="control-group">
+					<div class="span10">
+						<h:outputLabel value="Nome" for="nomeAtendente" />
+						<h:inputText style="width:600px" id="nomeAtendente"
+							value="#{atendenteMB.atendente.nomeAtendente}"
+							readonly="#{atendenteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+					<div class="span4">
+						<h:outputLabel value="Data Admissão" for="dataAdmissaoAtendente" />
+						<h:inputText id="dataAdmissaoAtendente"
+							value="#{atendenteMB.atendente.dataAdmissaoAtendente}"
+							readonly="#{atendenteMB.acao == 'Excluir'}">
+							<f:convertDateTime type="date" dateStyle="short"
+								pattern="dd/MM/yyyy" />
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Estadocivil" for="estadoCivilAtendente" />
+						<h:selectOneMenu id="estadoCivilAtendente"
+							value="#{atendenteMB.atendente.estadoCivilAtendente}"
+							disabled="#{atendenteMB.acao == 'Excluir'}" style="width:240px">
+							<f:validateBean />
+							<f:selectItem itemLabel="Escolha" noSelectionOption="true" />
+							<f:selectItem itemValue="Casado" itemLabel="Casado" />
+							<f:selectItem itemValue="Divorciado" itemLabel="Divorciado" />
+							<f:selectItem itemValue="Solteiro" itemLabel="Solteiro" />
+							<f:selectItem itemValue="Viúvo" itemLabel="Viúvo" />
+						</h:selectOneMenu>
+					</div>
+					<div class="span4">
+						<h:outputLabel value="Sexo" for="sexoAtendente" />
+						<h:selectOneRadio id="sexoAtendente" style="width:240px"
+							value="#{atendenteMB.atendente.sexoAtendente}"
+							disabled="#{atendenteMB.acao == 'Excluir'}">
+							<f:validateBean />
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Telefone" for="telefoneAtendente" />
+						<h:inputText id="telefoneAtendente"
+							value="#{atendenteMB.atendente.telefoneAtendente}"
+							style="width:240px" readonly="#{atendenteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+					<div class="span6">
+						<h:outputLabel value="Celular" for="celularAtendente" />
+						<h:inputText id="celularAtendente"
+							value="#{atendenteMB.atendente.celularAtendente}"
+							style="width:240px" readonly="#{atendenteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Status" for="statusAtendente" />
+						<h:selectOneRadio id="statusAtendente"
+							value="#{atendenteMB.atendente.statusAtendente}"
+							style="width:240px" disabled="#{atendenteMB.acao == 'Excluir'}">
+							<f:validateBean />
+
+							<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+							<f:selectItem itemLabel="Desativado" itemValue="Desativado" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+			</div>
+		</h:panelGroup>
+		<br />
+
+		<h:panelGrid columns="5">
+
+			<p:commandButton id="btnCancelar" value="Cancelar"
+				actionListener="#{atendenteMB.novo}"
+				update=":frmAtendente:pnlAtendente"
+				rendered="#{atendenteMB.acao == 'Voltar'}" />
+
+			<p:commandButton id="btnCadastrar" value="Salvar"
+				actionListener="#{atendenteMB.salvar}"
+				update=":msgProjeto :frmAtendente:pnlAtendente"
+				rendered="#{atendenteMB.acao == 'Voltar'}" />
+
+
+			<p:commandButton value="Excluir"
+				actionListener="#{atendenteMB.excluir}" update=":msgProjeto"
+				rendered="#{atendenteMB.acao == 'Excluir'}" />
+
+
+
+			<p:commandButton value="Editar"
+				actionListener="#{atendenteMB.salvar}" update=":msgProjeto"
+				rendered="#{atendenteMB.acao == 'Editar'}" />
+
+			<p:button value="Listar" outcome="/listarAtendente.xhtml" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>
+</h:body>
+</html>

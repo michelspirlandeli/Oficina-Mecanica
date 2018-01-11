@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="servAcao" value="#{servicoMB.acao}" />
+		<f:viewParam name="servicoCod" value="#{servicoMB.codigo}" />
+		<f:event listener="#{servicoMB.getByIdServico}"
+			type="preRenderView" />
+	</f:metadata>
+</ui:define>
+<h:head>
+	<title>Cadastrar Serviços</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+</h:head>
+<h:body>
+<ui:include src="includes/navbar.xhtml" /><br /><!-- cabecalho-->
+	<p:growl id="msgProjeto" sticky="true" />
+	<h:form id="frmServico">
+		<h:panelGroup id="pnlServico">
+			<div class="form-horizontal">
+				<div class="control-group">
+					<div class="span10">
+						<h:outputLabel value="Nome Serviço" for="nomeServico" />
+						<h:inputText style="width:600px" id="nomeServico"
+							value="#{servicoMB.servico.nomeServico}"
+							readonly="#{servicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="valor Servico"  for="valorServico"/>
+						<h:inputText id="valorServico"
+							value="#{servicoMB.servico.valorServico}"
+							disabled="#{servicoMB.acao == 'Excluir'}" style="width:240px">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Status" for="statusServico" />
+						<h:selectOneRadio id="statusServico"
+							value="#{servicoMB.servico.statusServico}"
+							style="width:240px" readonly="#{servicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+							<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+							<f:selectItem itemLabel="Desativado" itemValue="Desativado" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+			</div>
+		</h:panelGroup>
+		<br />
+		<h:panelGrid columns="5">
+
+			<p:commandButton id="btnCancelar" value="Cancelar"
+				actionListener="#{servicoMB.novo}"
+				update=":frmServico:pnlServico"
+				rendered="#{servicoMB.acao == 'Voltar'}" />
+
+			<p:commandButton id="btnCadastrar" value="Salvar"
+				actionListener="#{servicoMB.salvar}"
+				update=":msgProjeto :frmServico:pnlServico"
+				rendered="#{servicoMB.acao == 'Voltar'}" />
+
+
+			<p:commandButton value="Excluir"
+				actionListener="#{servicoMB.excluir}" update=":msgProjeto"
+				rendered="#{servicoMB.acao == 'Excluir'}" />
+
+			<p:commandButton value="Editar"
+				actionListener="#{servicoMB.salvar}" update=":msgProjeto"
+				rendered="#{servicoMB.acao == 'Editar'}" />
+
+			<p:button value="Listar" outcome="/listarServicos.xhtml" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>
+</h:body>
+</html>

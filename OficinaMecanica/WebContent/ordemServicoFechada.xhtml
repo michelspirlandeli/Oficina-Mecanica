@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:h="http://java.sun.com/jsf/html"
+			xmlns:f="http://java.sun.com/jsf/core"
+        	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Ordem servico</title>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="style/css/materialize.min.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+<h:body>
+<script >
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+</script>
+<ui:include src="includes/navbar.xhtml" /><!-- cabecalho-->
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText placeholder="Numero OS" id="first_name" type="text" class="validate"/>
+          <label for="first_name">Numero OS</label>
+        </div>
+        <div class="input-field col s6">
+          <h:inputText id="last_name" type="text" class="validate"/>
+          <label for="last_name">Veiculo</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Data Entrada</label>
+        </div>
+         <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Horario Entrada</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Data Saida</label>
+        </div>
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Horario saida</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Valor</label>
+        </div>
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Orcamento</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Garantia</label>
+        </div>
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Observações</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Valor peça</label>
+        </div>
+        <div class="input-field col s6">
+          <h:inputText id="password" type="password" class="validate"/>
+          <label for="password">Valor total</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+
+  
+<ui:include src="includes/footer.xhtml" /><!-- rodapé--> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+<script type="text/javascript" src="style/css/materialize.min.js"></script>  
+ 
+</h:body>
+</html>

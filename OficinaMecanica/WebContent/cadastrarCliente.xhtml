@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="clienteAcao" value="#{clienteMB.acao}" />
+		<f:viewParam name="clienteCod" value="#{clienteMB.codigo}" />
+		<f:event listener="#{clienteMB.getByIdCliente}" type="preRenderView" />
+
+
+
+
+
+
+	</f:metadata>
+</ui:define>
+
+<h:head>
+
+	<title>Cadastrar Cliente</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+
+</h:head>
+
+<h:body>
+
+	<ui:include src="includes/navbar.xhtml" />
+	<br />
+	<!-- cabecalho-->
+
+	<p:growl id="msgProjeto" sticky="true" />
+
+
+
+
+
+	<h:form id="frmCliente">
+
+
+
+
+		<h:panelGroup id="pnlCliente">
+			<div class="form-horizontal">
+				<div class="control-group">
+					<div class="span10">
+						<h:outputLabel value="Nome" for="nomeCliente" />
+						<h:inputText style="width:600px" id="nomeCliente"
+							value="#{clienteMB.cliente.nomeCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+					<div class="span4">
+						<h:outputLabel value="CPF/CNPJ" for="cpfCnpjCliente" />
+						<h:inputText style="width:240px" id="cpfCnpjCliente"
+							value="#{clienteMB.cliente.cpfCnpjCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="RG/Inscrição Estadual" for="rgIeCliente" />
+						<h:inputText style="width:240px" id="rgIeCliente"
+							value="#{clienteMB.cliente.rgIeEstadualCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="Apelido/Nome Fantasia"
+							for="apelidoNomeFantasiaCliente" />
+						<h:inputText style="width:240px" id="apelidoNomeFantasiaCliente"
+							value="#{clienteMB.cliente.apelidoNomeFantasiaCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Endereço" for="enderecoCliente" />
+						<h:inputTextarea id="enderecoCliente"
+							value="#{clienteMB.cliente.enderecoCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputTextarea>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="cep" for="cepCliente" />
+						<h:inputText style="width:240px" id="cepCliente"
+							value="#{clienteMB.cliente.cepCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Cidade" for="cidadeCliente" />
+						<h:inputText style="width:240px" id="cidadeCliente"
+							value="#{clienteMB.cliente.cidadeCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="Estado" for="estadoCliente" />
+						<h:inputText style="width:240px" id="estadoCliente"
+							value="#{clienteMB.cliente.estadoCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+
+
+
+				<div class="control-group">
+					<div class="span4">
+
+						<h:outputLabel value="Estado Civil" for="estadoCivilCliente" />
+						<h:selectOneMenu id="estadoCivilCliente"
+							value="#{clienteMB.cliente.estadoCivilCliente}"
+							disabled="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+							<f:selectItem itemLabel="Selecione Um Estado Civil"
+								noSelectionOption="true" />
+							<f:selectItem itemValue="Casado" itemLabel="Casado" />
+							<f:selectItem itemValue="Divorciado" itemLabel="Divorciado" />
+							<f:selectItem itemValue="Solteiro" itemLabel="Solteiro" />
+							<f:selectItem itemValue="Viúvo" itemLabel="Viúvo" />
+
+						</h:selectOneMenu>
+					</div>
+
+
+
+
+					<div class="span4">
+
+						<h:outputLabel value="Telefone" for="telefoneCliente" />
+						<p:inputMask mask="(99)99999999" style="width:240px"
+							id="telefoneCliente" value="#{clienteMB.cliente.telefoneCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</p:inputMask>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+
+
+						<h:outputLabel value="Celular" for="celularCliente" />
+						<p:inputMask mask="(99)999999999" style="width:240px"
+							id="celularCliente" value="#{clienteMB.cliente.celularCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</p:inputMask>
+					</div>
+
+
+
+
+					<div class="span4">
+
+
+						<h:outputLabel value="E-mail" for="emailCliente" />
+						<h:inputText style="width:240px" maxlength="50" size="30"
+							id="emailCliente" value="#{clienteMB.cliente.emailCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+
+					<div class="span4">
+
+						<h:outputLabel value="Sexo" for="sexoCliente" />
+						<h:selectOneRadio style="width:240px" id="sexoCliente"
+							value="#{clienteMB.cliente.sexoCliente}"
+							disabled="#{clienteMB.acao == 'Excluir'}">
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+							<f:validateBean />
+						</h:selectOneRadio>
+					</div>
+
+
+
+
+					<div class="span4">
+
+
+						<h:outputLabel value="Data Nascimento" for="dataNascimentoCliente" />
+						<p:calendar id="dataNascimentoCliente" size="30"
+							value="#{clienteMB.cliente.dataNascimentoCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}" showOn="button">
+							<f:convertDateTime type="date" dateStyle="short"
+								pattern="dd/MM/yyyy" />
+							<f:validateBean />
+						</p:calendar>
+					</div>
+				</div>
+
+				<div class="control-group">
+
+					<div class="span4">
+
+						<h:outputLabel value="Profissão" for="profissaoCliente" />
+						<h:inputText style="width:240px" id="profissaoCliente"
+							value="#{clienteMB.cliente.profissaoCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+
+
+
+
+
+					<div class="span4">
+
+
+						<h:outputLabel value="Renda" for="rendaCliente" />
+						<h:inputText style="width:240px" id="rendaCliente"
+							value="#{clienteMB.cliente.rendaCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}"
+							converterMessage="Informe um valor válido">
+							<f:convertNumber />
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+
+					<div class="span4">
+
+						<h:outputLabel value="Status" for="statusCliente" />
+						<h:selectOneRadio style="width:240px" id="statusCliente"
+							value="#{clienteMB.cliente.statusCliente}"
+							disabled="#{clienteMB.acao == 'Excluir'}">
+							<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+							<f:selectItem itemLabel="Inativo" itemValue="Inativo" />
+							<f:validateBean />
+						</h:selectOneRadio>
+					</div>
+
+
+
+					<div class="span4">
+
+
+						<h:outputLabel value="Observações" for="observacoesCliente"
+							class="active" />
+						<h:inputTextarea id="observacoesCliente"
+							value="#{clienteMB.cliente.observacoesCliente}"
+							readonly="#{clienteMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputTextarea>
+					</div>
+				</div>
+
+
+
+			</div>
+		</h:panelGroup>
+		<br />
+
+
+
+		<h:panelGrid columns="5">
+			<p:commandButton id="btnCancelar" value="Cancelar"
+				actionListener="#{clienteMB.novo}" update=":frmCliente:pnlCliente"
+				rendered="#{clienteMB.acao == 'Voltar'}" />
+
+			<p:commandButton id="btnCadastrar" value="Salvar"
+				actionListener="#{clienteMB.salvar}"
+				update=":msgProjeto :frmCliente:pnlCliente"
+				rendered="#{clienteMB.acao == 'Voltar'}" />
+
+
+			<p:commandButton value="Excluir"
+				actionListener="#{clienteMB.excluir}" update=":msgProjeto"
+				rendered="#{clienteMB.acao == 'Excluir'}" />
+
+
+
+			<p:commandButton value="Editar" actionListener="#{clienteMB.salvar}"
+				update=":msgProjeto" rendered="#{clienteMB.acao == 'Editar'}" />
+
+			<p:button value="Listar" outcome="/listarCliente.xhtml" />
+
+
+
+		</h:panelGrid>
+	</h:form>
+
+
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>
+</h:body>
+</html>

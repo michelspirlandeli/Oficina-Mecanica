@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="forneAcao" value="#{fornecedorMB.acao}" />
+		<f:viewParam name="forneCod" value="#{fornecedorMB.codigo}" />
+		<f:event listener="#{fornecedorMB.getByIdFornecedor}"
+			type="preRenderView" />
+
+
+
+
+
+
+	</f:metadata>
+</ui:define>
+
+<h:head>
+
+	<title>Cadastrar Fornecedor</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+
+</h:head>
+<h:body>
+
+	<ui:include src="includes/navbar.xhtml" />
+	<br />
+	<!-- cabecalho-->
+
+	<p:growl id="msgProjeto" sticky="true" />
+
+
+
+
+
+	<h:form id="frmFornecedor">
+
+
+
+
+		<h:panelGroup id="pnlFornecedor">
+			<div class="form-horizontal">
+				<div class="control-group">
+					<div class="span10">
+						<h:outputLabel value="Razão Social" for="razaoSocialFornecedor" />
+						<h:inputText style="width:600px" id="razaoSocialFornecedor"
+							value="#{fornecedorMB.fornecedor.razaoSocialFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+					<div class="span4">
+						<h:outputLabel value="CNPJ" for="cnpjFornecedor" />
+						<h:inputText style="width:240px" id="cnpjFornecedor"
+							value="#{fornecedorMB.fornecedor.cnpjFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Inscrição Estadual"
+							for="inscricaoEstadualFornecedor" />
+						<h:inputText style="width:240px" id="inscricaoEstadualFornecedor"
+							value="#{fornecedorMB.fornecedor.inscricaoEstadualFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="Nome Fantasia" for="nomeFantasiaFornecedor" />
+						<h:inputText style="width:240px" id="nomeFantasiaFornecedor"
+							value="#{fornecedorMB.fornecedor.nomeFantasiaFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Endereço" for="enderecoFornecedor" />
+						<h:inputTextarea id="enderecoFornecedor"
+							value="#{fornecedorMB.fornecedor.enderecoFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputTextarea>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="cep" for="cepFornecedor" />
+						<h:inputText style="width:240px" id="cepFornecedor"
+							value="#{fornecedorMB.fornecedor.cepFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Cidade" for="cidadeFornecedor" />
+						<h:inputText style="width:240px" id="cidadeFornecedor"
+							value="#{fornecedorMB.fornecedor.cidadeFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="Estado" for="estadoFornecedor" />
+						<h:inputText style="width:240px" id="estadoFornecedor"
+							value="#{fornecedorMB.fornecedor.estadoFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+
+
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="representante" for="representanteFornecedor" />
+						<h:inputText style="width:240px" id="representanteFornecedor"
+							value="#{fornecedorMB.fornecedor.representanteFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+
+
+
+					</div>
+
+
+
+
+					<div class="span4">
+
+						<h:outputLabel value="Telefone" for="telefoneFornecedor" />
+						<p:inputMask mask="(99)99999999" style="width:240px"
+							id="telefoneFornecedor"
+							value="#{fornecedorMB.fornecedor.telefoneFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</p:inputMask>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+
+
+						<h:outputLabel value="Telefone Contato"
+							for="telefoneContatoFornecedor" />
+						<p:inputMask mask="(99)999999999" style="width:240px"
+							id="telefoneContatoFornecedor"
+							value="#{fornecedorMB.fornecedor.telefoneContatoFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</p:inputMask>
+					</div>
+
+
+
+
+					<div class="span4">
+
+
+						<h:outputLabel value="E-mail" for="emailFornecedor" />
+						<h:inputText style="width:240px" id="emailFornecedor"
+							value="#{fornecedorMB.fornecedor.emailFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+
+					<div class="span4">
+						<h:outputLabel value="Home Page" for="homePageFornecedor" />
+						<h:inputText style="width:240px" id="homePageFornecedor"
+							value="#{fornecedorMB.fornecedor.homePageFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+
+
+					</div>
+
+
+
+
+					<div class="span4">
+						<h:outputLabel value="Peça" for="pecaFornecedor" />
+						<h:inputText style="width:240px" id="pecaFornecedor"
+							value="#{fornecedorMB.fornecedor.pecaFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+
+
+					</div>
+				</div>
+
+				<div class="control-group">
+
+					<div class="span4">
+
+						<h:outputLabel value="Valor Peça" for="valorPecaFornecedor" />
+						<h:inputText id="valorPecaFornecedor" size="25"
+							value="#{fornecedorMB.fornecedor.valorPecaFornecedor}"
+							readonly="#{fornecedorMB.acao == 'Excluir'}"
+							converterMessage="Informe um valor válido">
+							<f:convertNumber />
+							<f:validateBean />
+						</h:inputText>
+
+
+					</div>
+
+
+					<div class="span4">
+
+						<h:outputLabel value="Status" for="statusFornecedor" />
+						<h:selectOneRadio style="width:240px" id="statusFornecedor"
+							value="#{fornecedorMB.fornecedor.statusFornecedor}"
+							disabled="#{fornecedorMB.acao == 'Excluir'}">
+							<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+							<f:selectItem itemLabel="Inativo" itemValue="Inativo" />
+							<f:validateBean />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+
+			</div>
+		</h:panelGroup>
+		<br />
+
+
+
+		<h:panelGrid columns="5">
+			<p:commandButton id="btnCancelar" value="Cancelar"
+				actionListener="#{fornecedorMB.novo}"
+				update=":frmFornecedor:pnlFornecedor"
+				rendered="#{fornecedorMB.acao == 'Voltar'}" />
+
+			<p:commandButton id="btnCadastrar" value="Salvar"
+				actionListener="#{fornecedorMB.salvar}"
+				update=":msgProjeto :frmFornecedor:pnlFornecedor"
+				rendered="#{fornecedorMB.acao == 'Voltar'}" />
+
+
+			<p:commandButton value="Excluir"
+				actionListener="#{fornecedorMB.excluir}" update=":msgProjeto"
+				rendered="#{fornecedorMB.acao == 'Excluir'}" />
+
+
+
+			<p:commandButton value="Editar"
+				actionListener="#{fornecedorMB.salvar}" update=":msgProjeto"
+				rendered="#{fornecedorMB.acao == 'Editar'}" />
+
+			<p:button value="Listar" outcome="/listarFornecedor.xhtml" />
+
+
+
+		</h:panelGrid>
+	</h:form>
+
+
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>
+</h:body>
+
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:h="http://java.sun.com/jsf/html"
+			xmlns:f="http://java.sun.com/jsf/core"
+        	xmlns:ui="http://java.sun.com/jsf/facelets"
+        	xmlns:p="http://primefaces.org/ui">
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="mecAcao" value="#{mecanicoMB.acao}" />
+		<f:viewParam name="mecanicoCod" value="#{mecanicoMB.codigo}" />
+		<f:event listener="#{mecanicoMB.getByIdMecanico}"
+			type="preRenderView" />
+	</f:metadata>
+</ui:define>
+<h:head>
+	<title>Cadastrar Mecanico</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="shortcut icon" href="style/img/favicon.jpg" />
+</h:head>
+<h:body>
+<ui:include src="includes/navbar.xhtml" /><br /><!-- cabecalho-->
+
+<p:growl id="msgProjeto" sticky="true" />
+	<h:form id="frmMecanico">
+		<h:panelGroup id="pnlMecanico">
+			<div class="form-horizontal">
+				<div class="control-group">
+					<div class="span10">
+						<h:outputLabel value="Nome" for="nomeMecanico" />
+						<h:inputText style="width:600px" id="nomeMecanico"
+							value="#{mecanicoMB.mecanico.nomeMecanico}"
+							readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+					<div class="span4">
+						<h:outputLabel value="Data Admissão" for="dataAdmissaoMecanico" />
+						<h:inputText id="dataAdmissaoMecanico"
+							value="#{mecanicoMB.mecanico.dataAdmissaoMecanico}"
+							readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:convertDateTime type="date" dateStyle="short"
+								pattern="dd/MM/yyyy" />
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+				<div class="control-group">
+				<div class="span10">
+						<h:outputLabel value="Especialidade" for="especialidadeMecanico" />
+						<h:selectOneMenu id="especialidadeMecanico"
+							value="#{mecanicoMB.mecanico.nomeMecanico}"
+							readonly="#{mecanicoMB.acao == 'Excluir'}" style="width:600px">
+							<f:validateBean />
+							<f:selectItem itemLabel="Escolha" noSelectionOption="true"/>
+							<f:selectItem itemValue="Injeção Eletronica" itemLabel="Injeção Eletronica" />
+							<f:selectItem itemValue="Motor" itemLabel="Motor" />
+						</h:selectOneMenu>
+				</div>
+				</div>
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Estadocivil"  for="estadoCivilMecanico"/>
+						<h:selectOneMenu id="estadoCivilMecanico"
+							value="#{mecanicoMB.mecanico.estadoCivilMecanico}"
+							disabled="#{mecanicoMB.acao == 'Excluir'}" style="width:240px">
+							<f:validateBean />
+							<f:selectItem itemLabel="Escolha" noSelectionOption="true"/>
+							<f:selectItem itemValue="Casado" itemLabel="Casado" />
+							<f:selectItem itemValue="Divorciado" itemLabel="Divorciado" />
+							<f:selectItem itemValue="Solteiro" itemLabel="Solteiro" />
+							<f:selectItem itemValue="Viúvo" itemLabel="Viúvo" />
+						</h:selectOneMenu>
+					</div>
+					<div class="span6">
+						<h:outputLabel value="Sexo" for="sexoAtendente" />
+						<h:selectOneRadio id="sexoAtendente" style="width:240px"
+							value="#{mecanicoMB.mecanico.sexoMecanico}"
+							readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Telefone" for="telefoneMecanico" />
+						<h:inputText id="telefoneMecanico"
+							value="#{mecanicoMB.mecanico.telefoneMecanico}"
+							style="width:240px" readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+					<div class="span6">
+						<h:outputLabel value="Celular" for="celularMecanico" />
+						<h:inputText id="celularMecanico"
+							value="#{mecanicoMB.mecanico.celularMecanico}"
+							style="width:240px" readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+						</h:inputText>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="span4">
+						<h:outputLabel value="Status" for="statusMecanico" />
+						<h:selectOneRadio id="statusMecanico"
+							value="#{mecanicoMB.mecanico.statusMecanico}"
+							style="width:240px" readonly="#{mecanicoMB.acao == 'Excluir'}">
+							<f:validateBean />
+
+							<f:selectItem itemLabel="Ativo" itemValue="Ativo" />
+							<f:selectItem itemLabel="Desativado" itemValue="Desativado" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+			</div>
+		</h:panelGroup>
+		<br />
+
+		<h:panelGrid columns="5">
+
+			<p:commandButton id="btnCancelar" value="Cancelar"
+				actionListener="#{mecanicoMB.novo}"
+				update=":frmMecanico:pnlMecanico"
+				rendered="#{mecanicoMB.acao == 'Voltar'}" />
+
+			<p:commandButton id="btnCadastrar" value="Salvar"
+				actionListener="#{mecanicoMB.salvar}"
+				update=":msgProjeto :frmMecanico:pnlMecanico"
+				rendered="#{mecanicoMB.acao == 'Voltar'}" />
+
+
+			<p:commandButton value="Excluir"
+				actionListener="#{mecanicoMB.excluir}" update=":msgProjeto"
+				rendered="#{mecanicoMB.acao == 'Excluir'}" />
+
+
+
+			<p:commandButton value="Editar"
+				actionListener="#{mecanicoMB.salvar}" update=":msgProjeto"
+				rendered="#{mecanicoMB.acao == 'Editar'}" />
+
+			<p:button value="Listar" outcome="/listarMecanico.xhtml" />
+
+		</h:panelGrid>
+
+	</h:form>
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript" src="style/css/script.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="style/js/bootstrap.min.js"></script>  
+</h:body>
+</html>

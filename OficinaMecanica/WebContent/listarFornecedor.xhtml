@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:insert name="metadata" />
+<ui:define name="metadata">
+	<f:metadata>
+		<f:event listener="#{fornecedorMB.listarFornecedores}"
+			type="preRenderView" />
+	</f:metadata>
+</ui:define>
+
+<head>
+<title>Listar Fornecedor</title>
+<link href="style/css/materialize.min.css" rel="stylesheet"
+	type="text/css" />
+<h:outputStylesheet library="style" name="estilo.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<nav>
+	<div class="nav-wrapper #03a9f4 light-blue">
+		<a href="#!" class="brand-logo">AutoTEC</a>
+
+	</div>
+	</nav>
+	<center>
+		<h3>Listar Fornecedor</h3>
+	</center>
+
+
+
+
+	<h:form id="consultarFornecedor">
+
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Fornecedores: " />
+			<p:inputText maxlength="50" size="50" />
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+	<h:form>
+		<p:dataTable emptyMessage="Nenhum registro encontrado"
+			value="#{fornecedorMB.fornecedores}" var="forne">
+
+			<p:column headerText="Razão Social">
+				<h:outputText value="#{forne.razaoSocialFornecedor}" />
+			</p:column>
+
+			<p:column headerText="Representante">
+				<h:outputText value="#{forne.representanteFornecedor}" />
+			</p:column>
+
+
+			<p:column headerText="Telefone">
+				<h:outputText value="#{forne.telefoneFornecedor}" />
+			</p:column>
+
+			<p:column headerText="Telefone Contato">
+				<h:outputText value="#{forne.telefoneContatoFornecedor}" />
+			</p:column>
+
+			<p:column headerText="Peça">
+				<h:outputText value="#{forne.pecaFornecedor}" />
+			</p:column>
+
+			<p:column headerText="Valor Peça" style="width: 5%">
+				<h:outputText value="R$ #{forne.valorPecaFornecedor}">
+					<f:convertNumber pattern="0.00" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Opções">
+				<p:button value="Editar" outcome="/cadastrarFornecedor.xhtml">
+					<f:param name="forneCod" value="#{forne.codigo}" />
+					<f:param name="forneAcao" value="Editar" />
+
+				</p:button>
+				<p:button value="Excluir" outcome="/cadastrarFornecedor.xhtml">
+					<f:param name="forneCod" value="#{forne.codigo}" />
+					<f:param name="forneAcao" value="Excluir" />
+
+				</p:button>
+			</p:column>
+
+			<f:facet name="footer">
+				<p:button value="Voltar" outcome="/cadastrarFornecedor.xhtml">
+					<f:param name="forneAcao" value="Voltar" />
+				</p:button>
+			</f:facet>
+
+		</p:dataTable>
+	</h:form>
+
+	<br />
+	<br />
+	<br />
+	<ui:include src="includes/footer.xhtml" />
+	<!-- rodapé-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="style/css/materialize.min.js"></script>
+</body>
+</html>
